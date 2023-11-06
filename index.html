@@ -10,31 +10,30 @@
     </style>
 </head>
 <body>
-    <div class="row" id="list">
+    <div class="row" id="comp">
         
     </div>
 
     <script>
-        const list = document.getElementById("list");
+        const comp = document.getElementById("comp");
 
-// Use the fetch API to retrieve the data from the provided URL
 fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20")
     .then(response => response.json())
-    .then(data => {
-        data.results.forEach((nama, index) => {
-            const card = document.createElement("div");
-            card.className = "col-xl-3 col-md-6 mb-6";
-            card.innerHTML = `
-            <div class="container-card">
-         <div class="card border-primary mb-3">
-          <div class="card-body">
-            <p class="card-text fs-4">${nama.name}</p>
-            <a href="${nama.url}" target="_blank" class="btn btn-primary">Detail</a>
-          </div>
-        </div>
-        </div>
+    .then(data =>{
+             data.results.forEach((api, index) => {
+                const card = document.createElement("div");
+                card.className = "col-xl-3 col-md-6 mb-6";
+                card.innerHTML = `
+                <div class="container-card">
+            <div class="card border-primary mb-3">
+            <div class="card-body">
+                <p class="card-text fs-4">${api.name}</p>
+                <a href="${api.url}" target="_blank" class="btn btn-primary">Detail</a>
+            </div>
+            </div>
+            </div>
             `;
-            list.appendChild(card);
+            comp.appendChild(card);
                 });
             })
             .catch(error => {
